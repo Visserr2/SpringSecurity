@@ -4,26 +4,12 @@
 	<name>SpringSecurity</name>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>nl.thuis.tutorial</groupId>
-	<artifactId>springsecurity</artifactId>
+	<groupId>nl.thuis.tutorial.springsecurity</groupId>
+	<artifactId>SpringSecurity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<build>
-		<finalName>Spring Security</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<!-- Add maven coordinates (GAV) for maven-war-plugin -->
-					<!-- This way the projects know about programmatically web.xml -->
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>3.2.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-
 	<properties>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<springframework.version>4.3.13.RELEASE</springframework.version>

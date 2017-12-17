@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration // Its a configuration class
 @EnableWebMvc  // This annotation is equal to mvc:annotation-driven tag
-@ComponentScan(basePackages="nl.thuis.tutorial.springsecurity.config")
+@ComponentScan(basePackages= {"nl.thuis.tutorial.springsecurity"})
 public class SpringConfig {
 
 	private static final String RESOLVER_PREFIX = "/WEB-INF/view/";
@@ -20,7 +20,7 @@ public class SpringConfig {
 	 * @return ViewResolver-Object
 	 */
 	@Bean
-	ViewResolver viewResolver() {
+	public ViewResolver viewResolver() {
 		return new InternalResourceViewResolver(RESOLVER_PREFIX, RESOLVER_SUFFIX);
 	}
 }
