@@ -30,6 +30,7 @@
 	</properties>
 
 	<dependencies>
+	
 		<!-- Spring MVC support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -56,16 +57,14 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Addin support for junit -->
+		<!-- Adding support for junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
-
-
-
 
 </project>
