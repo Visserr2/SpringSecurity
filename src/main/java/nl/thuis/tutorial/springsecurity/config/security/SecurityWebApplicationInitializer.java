@@ -7,6 +7,7 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  * 1. Set up class that extends from AbstractSecurityWebApplicationInitializer to initialize SpringSecurity
  * 2. Set up class that extends from WebSecurityConfigurerAdapter to configure SpringSecurity. Also add the annotations: @Configuration and @EnableWebSecurity
  * 3. Override method configure(authenticationManagerBuilder) in Spring Configure Class
+ * 4. Let Spring componentscan scan this class
  * @author ronald
  */
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
