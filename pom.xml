@@ -14,8 +14,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		
-		<springframework.version>4.3.13.RELEASE</springframework.version>
-		<springsecurity.version>4.2.3.RELEASE</springsecurity.version>
+		<springframework.version>5.0.2.RELEASE</springframework.version>
+		<springsecurity.version>5.0.0.RELEASE</springsecurity.version>
 	</properties>
 
 	<dependencies>
