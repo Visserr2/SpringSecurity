@@ -5,6 +5,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Set up Spring Security With annotations
@@ -27,10 +30,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		// Add users for in-memory authentication
-		auth.inMemoryAuthentication().withUser("Ronald").password("100292").roles("EMPLOYEE");		
-		auth.inMemoryAuthentication().withUser("Lars").password("100292").roles("MANAGER");		
-		auth.inMemoryAuthentication().withUser("Michiel").password("100292").roles("EMPLOYEE");
+		// Since Spring 5 the PasswordEncoder must always be used. Users are build via the UserBuilder
+		UserBuilder users = User.withDefaultPasswordEncoder();
+		UserDetails user1 = users.username("Ronald").password("100292").roles("EMPLOYEE").build();
+		UserDetails user2 = users.username("Lars").password("100292").roles("MANAGER").build();
+		UserDetails user3 = users.username("Michiel").password("100292").roles("EMPLOYEE").build();
+		
+		// Adding users to in-memory authentication
+		auth.inMemoryAuthentication().withUser(user1).withUser(user2).withUser(user3);
 	}
 	
 	/**
@@ -40,12 +47,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().authenticated()
+				.anyRequest().authenticated()	// every request neet to be authorized
 			.and()
 			.formLogin()
 				.loginPage(LOGIN_PAGE)
 				.loginProcessingUrl(LOGIN_PROCESSING_URL)
-				.permitAll();
+				.permitAll();					// login page is permited for everyone
 	}
 	
 }
