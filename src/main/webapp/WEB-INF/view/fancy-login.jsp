@@ -30,6 +30,7 @@
 					<div style="padding-top: 30px" class="panel-body">
 	
 						<!-- Login Form -->
+						<!-- Always use form:form-tag for csrf-protection. Else you must add csrf-parameterName and csrf-token manually to every form-tag -->
 						<form:form action="${pageContext.request.contextPath}/authenticate" method="POST" class="form-horizontal">
 	
 						    <!-- Place for messages: error, alert etc ... -->

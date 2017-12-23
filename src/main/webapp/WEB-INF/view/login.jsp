@@ -13,6 +13,7 @@
 	<body>
 		<h3>My Custom Login Page</h3>
 	
+		<!-- Always use form:form-tag for csrf-protection. Else you must add csrf-parameterName and csrf-token manually to every form-tag -->
 		<form:form action="${pageContext.request.contextPath}/authenticate" method="POST">
 	
 			<!-- Check for login error -->
