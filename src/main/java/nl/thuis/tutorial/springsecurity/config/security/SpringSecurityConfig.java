@@ -34,12 +34,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// Since Spring 5 the PasswordEncoder must always be used. Users are build via the UserBuilder
 		UserBuilder users = User.withDefaultPasswordEncoder();
-		UserDetails user1 = users.username("Ronald").password("100292").roles("EMPLOYEE").build();
-		UserDetails user2 = users.username("Lars").password("100292").roles("MANAGER").build();
-		UserDetails user3 = users.username("Michiel").password("100292").roles("EMPLOYEE").build();
 		
 		// Adding users to in-memory authentication
-		auth.inMemoryAuthentication().withUser(user1).withUser(user2).withUser(user3);
+		auth.inMemoryAuthentication().withUser(users.username("Ronald").password("100292").roles("EMPLOYEE").build())
+									 .withUser(users.username("Lars").password("100292").roles("MANAGER").build())
+									 .withUser(users.username("Michiel").password("100292").roles("EMPLOYEE").build());
 		
 		// This is another alternative. Create password encoder and use this to encrypt password and add to the in-memory authentication
 		PasswordEncoder pwe = new BCryptPasswordEncoder();
