@@ -23,8 +23,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String ROOT = "/";
-	private static final String LEADERS_PAGE = "/leaders";
-	private static final String ADMIN_PAGE = "/admin";
+	private static final String LEADERS_PAGE = "/leaders/**";
+	private static final String ADMIN_PAGE = "/admin/**";
 	private static final String LOGIN_PAGE = "/showLogin";
 	private static final String LOGIN_PROCESSING_URL = "/authenticate";
 	
