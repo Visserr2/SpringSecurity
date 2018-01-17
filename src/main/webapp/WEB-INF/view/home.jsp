@@ -19,6 +19,13 @@
 		
 		<hr />
 		
+		<p><a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a></p>
+		
+		<hr />
+		
+		<p><a href="${pageContext.request.contextPath}/admin">Admin Meeting</a></p>
+		
+		<hr />
 		
 		<!-- Adding logout button -->
 		<!-- Always use form:form-tag for csrf-protection. Else you must add csrf-parameterName and csrf-token manually to every form-tag -->
