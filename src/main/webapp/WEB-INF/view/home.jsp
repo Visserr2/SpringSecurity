@@ -19,11 +19,19 @@
 		
 		<hr />
 		
+		<sec:authorize access="hasRole('MANAGER')" >
+		
 		<p><a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a></p>
+		
+		</sec:authorize>
 		
 		<hr />
 		
+		<sec:authorize access="hasRole('ADMIN')" >
+		
 		<p><a href="${pageContext.request.contextPath}/admin">Admin Meeting</a></p>
+		
+		</sec:authorize>
 		
 		<hr />
 		
