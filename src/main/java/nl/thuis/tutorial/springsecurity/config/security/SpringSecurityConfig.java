@@ -1,14 +1,13 @@
 package nl.thuis.tutorial.springsecurity.config.security;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * Set up Spring Security With annotations
@@ -32,6 +31,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String ROLE_EMPLOYEE = "EMPLOYEE";
 	private static final String ROLE_MANAGER = "MANAGER";
 	private static final String ROLE_ADMIN = "ADMIN";
+	
+	@Autowired
+	private DataSource securityDataSource;
 
 	/**
 	 * This method is for configuring users (in memory, database, ldap, etc)
@@ -39,18 +41,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {		
 		
-		// Since Spring 5 the PasswordEncoder must always be used. Users are build via the UserBuilder
-		UserBuilder users = User.withDefaultPasswordEncoder();
+		// Connecting database to Spring Security Context
+		auth.jdbcAuthentication().dataSource(securityDataSource);
 		
-		// Adding users to in-memory authentication
-		auth.inMemoryAuthentication().withUser(users.username("Ronald").password("100292").roles(ROLE_EMPLOYEE, ROLE_ADMIN).build())
-									 .withUser(users.username("Lars").password("100292").roles(ROLE_EMPLOYEE, ROLE_MANAGER).build())
-									 .withUser(users.username("Michiel").password("100292").roles(ROLE_EMPLOYEE).build());
-		
-		// This is another alternative. Create password encoder and use this to encrypt password and add to the in-memory authentication
-		PasswordEncoder pwe = new BCryptPasswordEncoder();
-		String password = pwe.encode("100292");
-		auth.inMemoryAuthentication().passwordEncoder(pwe).withUser("Jeroen").password(password).roles(ROLE_EMPLOYEE);
 	}
 	
 	/**
